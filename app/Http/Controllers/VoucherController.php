@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Events;
-use App\Http\Resources\EventResource;
-use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 
-class EventsController extends Controller
+class VoucherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +13,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $resource = EventResource::collection(Events::paginate());
-        return $resource;
+        //
     }
 
     /**
@@ -34,10 +30,10 @@ class EventsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\events  $events
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(events $events)
+    public function show($id)
     {
         //
     }
@@ -46,10 +42,10 @@ class EventsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\events  $events
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, events $events)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -57,10 +53,10 @@ class EventsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\events  $events
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(events $events)
+    public function destroy($id)
     {
         //
     }
