@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
+use App\Models\Workplace;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class WorkPlaceFactory extends Factory
+class WorkplaceFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Model::class;
+    protected $model = Workplace::class;
 
     /**
      * Define the model's default state.
@@ -23,6 +23,10 @@ class WorkPlaceFactory extends Factory
     {
         return [
             //
+            'title' => $this->faker->realText,
+            'content' => $this->faker->text,
+            'address' => $this->faker->address,
+            'image' => $this->faker->image
         ];
     }
 }

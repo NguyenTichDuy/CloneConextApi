@@ -19,7 +19,7 @@ class EventController extends Controller
     public function index()
     {
         //
-        $eventAll = EventResource::collection(Events::paginate());
+        $eventAll = EventResource::collection(Events::paginate())->data();
         return $eventAll;
     }
 
@@ -45,7 +45,7 @@ class EventController extends Controller
     public function show($id)
     {
         //
-        return EventResource::collection(Events::where('id', $id)->get());
+        return EventResource::collection(Events::where('id', $id)->get())->toJson();
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Workplace;
 use Illuminate\Database\Seeder;
 
 class WorkplaceSeeder extends Seeder
@@ -14,5 +15,6 @@ class WorkplaceSeeder extends Seeder
     public function run()
     {
         //
+        Workplace::factory(10)->create();
     }
 }

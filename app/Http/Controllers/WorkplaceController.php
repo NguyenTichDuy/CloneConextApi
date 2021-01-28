@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\WorkplaceResource;
 use App\Models\Workplace;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,8 @@ class WorkplaceController extends Controller
     public function index()
     {
         //
-        $eventAll = EventResource::collection(Events::paginate());
-        return $eventAll;
+        $workplaceAll = WorkplaceResource::collection(Workplace::paginate());
+        return $workplaceAll;
     }
 
     /**
@@ -39,8 +40,8 @@ class WorkplaceController extends Controller
     public function store(Request $request)
     {
         //
-        $event = Events::create($request->all());
-        return new EventResource($event);
+        $workplace = Workplace::create($request->all());
+        return new WorkplaceResource($workplace);
     }
 
     /**
@@ -52,7 +53,7 @@ class WorkplaceController extends Controller
     public function show(Workplace $workplace)
     {
         //
-        return VoucherResource::collection(Voucher::where('id', $id)->get());
+        return WorkplaceResource::collection($workplace);
     }
 
     /**
@@ -76,10 +77,9 @@ class WorkplaceController extends Controller
     public function update(Request $request, Workplace $workplace)
     {
         //
-        $voucher = Voucher::findOrFail($id);
-        $voucher->update($request->all());
+        $workplace->update($request->all());
 
-        return new VoucherResource($voucher);
+        return new WorkplaceResource($workplace);
     }
 
     /**
@@ -91,8 +91,7 @@ class WorkplaceController extends Controller
     public function destroy(Workplace $workplace)
     {
         //
-                $event = Voucher::findOrFail($id);
-        $event->delete();
+        $workplace->delete();
         return response("success");
     }
 }

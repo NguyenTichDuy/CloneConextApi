@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Expertise;
 use Illuminate\Database\Seeder;
 
-class ExpertiseSeeder extends Seeder
+class PageContactSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +14,5 @@ class ExpertiseSeeder extends Seeder
     public function run()
     {
         //
-        Expertise::factory(10)->create();
     }
 }

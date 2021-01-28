@@ -6,6 +6,7 @@ use App\Http\Resources\BussinessResource;
 use App\Models\Bussiness;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use PHPUnit\Util\Json;
 
 class BussinessController extends Controller
 {
@@ -17,7 +18,8 @@ class BussinessController extends Controller
     public function index()
     {
         //
-        $bussiness = JsonResource::collection(Bussiness::paginate());
+        // dd(Bussiness::paginate());
+        $bussiness = BussinessResource::collection(Bussiness::paginate())->toJson();
         return $bussiness;
     }
 
@@ -42,7 +44,7 @@ class BussinessController extends Controller
     {
         //
         $bussiness = Bussiness::create($request->all());
-        return new Bussiness($bussiness);
+        return new JsonResource($bussiness);
     }
 
     /**
@@ -53,8 +55,7 @@ class BussinessController extends Controller
      */
     public function show(Bussiness $bussiness)
     {
-        //
-        
+        return new JsonResource($bussiness);
     }
 
     /**
@@ -78,10 +79,8 @@ class BussinessController extends Controller
     public function update(Request $request, Bussiness $bussiness)
     {
         //
-        // $bussiness = Bussiness::findOrFail($id);
         $bussiness->update($request->all());
-
-        return new BussinessResource($bussiness);
+        return new JsonResource($bussiness);
     }
 
     /**
@@ -93,7 +92,6 @@ class BussinessController extends Controller
     public function destroy(Bussiness $bussiness)
     {
         //
-        dd($bussiness);
         // $bussiness = Bussiness::findOrFail($id);
         $bussiness->delete();
         return response("success");

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ExpertiseResource;
 use App\Models\Expertise;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,8 @@ class ExpertiseController extends Controller
     public function index()
     {
         //
-        $eventAll = EventResource::collection(Events::paginate());
-        return $eventAll;
+        $expertiseAll = ExpertiseResource::collection(Expertise::paginate());
+        return $expertiseAll;
     }
 
     /**
@@ -39,8 +40,8 @@ class ExpertiseController extends Controller
     public function store(Request $request)
     {
         //
-        $event = Events::create($request->all());
-        return new EventResource($event);
+        $expertise = Expertise::create($request->all());
+        return new ExpertiseResource($expertise);
     }
 
     /**
@@ -52,7 +53,7 @@ class ExpertiseController extends Controller
     public function show(Expertise $expertise)
     {
         //
-        return VoucherResource::collection(Voucher::where('id', $id)->get());
+        return ExpertiseResource::collection($expertise);
     }
 
     /**
@@ -76,10 +77,9 @@ class ExpertiseController extends Controller
     public function update(Request $request, Expertise $expertise)
     {
         //
-        $voucher = Voucher::findOrFail($id);
-        $voucher->update($request->all());
+        $expertise->update($request->all());
 
-        return new VoucherResource($voucher);
+        return new ExpertiseResource($expertise);
     }
 
     /**
@@ -91,8 +91,7 @@ class ExpertiseController extends Controller
     public function destroy(Expertise $expertise)
     {
         //
-        $event = Voucher::findOrFail($id);
-        $event->delete();
+        $expertise->delete();
         return response("success");
     }
 }

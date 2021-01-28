@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
+use App\Http\Resources\ContactResource;
+use App\Models\AdminContact;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class ContactController extends Controller
+class AdminContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,7 @@ class ContactController extends Controller
     public function index()
     {
         //
-                $eventAll = EventResource::collection(Events::paginate());
+        $eventAll = ContactResource::collection(AdminContact::paginate())->toJson();
         return $eventAll;
     }
 
@@ -38,8 +40,8 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-                       $event = Events::create($request->all());
-        return new EventResource($event);
+        $event = AdminContact::create($request->all());
+        return new ContactResource($event);
     }
 
     /**
@@ -48,13 +50,11 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show(Contact $contact)
+    public function show(AdminContact $contact)
     {
         //
-                $voucher = Voucher::findOrFail($id);
-        $voucher->update($request->all());
 
-        return new VoucherResource($voucher);
+        return new ContactResource($contact);
     }
 
     /**
@@ -63,7 +63,7 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contact $contact)
+    public function edit(AdminContact $contact)
     {
         //
     }
@@ -75,13 +75,12 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(Request $request, AdminContact $contact)
     {
         //
-                        $voucher = Voucher::findOrFail($id);
-        $voucher->update($request->all());
+        $contact->update($request->all());
 
-        return new VoucherResource($voucher);
+        return new ContactResource($contact);
     }
 
     /**
@@ -90,11 +89,10 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contact $contact)
+    public function destroy(AdminContact $contact)
     {
         //
-                $event = Voucher::findOrFail($id);
-        $event->delete();
+        $contact->delete();
         return response("success");
     }
 }

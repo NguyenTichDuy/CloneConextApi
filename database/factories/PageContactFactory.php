@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Expertise;
+use App\Models\PageContact;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ExpertiseFactory extends Factory
+class PageContactFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Expertise::class;
+    protected $model = PageContact::class;
 
     /**
      * Define the model's default state.
@@ -23,7 +23,6 @@ class ExpertiseFactory extends Factory
     {
         return [
             //
-            'name' => $this->faker->name
         ];
     }
 }

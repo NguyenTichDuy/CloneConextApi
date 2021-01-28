@@ -9,7 +9,7 @@ class Voucher extends Model
 {
     use HasFactory;
     
-    public $timestamps = false;
+    // public $timestamps = false;
 
     protected $fillable = [
         'vouchers_name',

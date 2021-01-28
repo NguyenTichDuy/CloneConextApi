@@ -23,6 +23,7 @@ class BussinessFactory extends Factory
     {
         return [
             //
+            'name' => $this->faker->name
         ];
     }
 }

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Workplace extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'content',
+        'address',
+        'image'
+    ];
+    public $timestamps = false;
 }

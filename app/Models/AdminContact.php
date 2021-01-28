@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Bussiness extends Model
+class AdminContact extends Model
 {
-    protected $table = 'bussiness';
     use HasFactory;
-    protected $fillable = [
-        'name',
-    ];
+    protected $table = 'admin_contacts';
     public $timestamps = false;
+    protected $fillable = [
+        'address',
+        'hotline',
+        'email'
+    ];
 }
