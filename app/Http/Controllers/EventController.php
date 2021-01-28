@@ -6,6 +6,7 @@ use App\Http\Requests\EventRequest;
 use App\Models\Events;
 use App\Http\Resources\EventResource;
 use Facade\FlareClient\Http\Response;
+use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -31,15 +32,8 @@ class EventController extends Controller
     public function store(EventRequest $request)
     {
         //
-        $event = new Events();
-        $event->event_name = $request->event_name;
-        $event->content = $request->content;
-        $event->image = $request->image;
-        $event->time_start = $request->time_start;
-        $event->time_end = $request->time_end;
-        if ($event->save()) {
-            return EventResource::collection(Events::where('id', $event->id)->get());
-        }
+        $event = Events::create($request->all());
+        return new EventResource($event);
     }
 
     /**
@@ -67,7 +61,7 @@ class EventController extends Controller
         $event = Events::findOrFail($id);
         $event->update($request->all());
 
-        return EventResource::collection(Events::where('id', $id)->get());
+        return new EventResource($event);
     }
 
     /**
@@ -81,6 +75,6 @@ class EventController extends Controller
         //
         $event = Events::findOrFail($id);
         $event->delete();
-        // return response(null);
+        return response("success");
     }
 }

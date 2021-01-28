@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\VoucherRequest;
-use App\Http\Resources\VoucherResource;
-use App\Models\Voucher;
+use App\Models\Expertise;
 use Illuminate\Http\Request;
 
-class VoucherController extends Controller
+class ExpertiseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,19 @@ class VoucherController extends Controller
     public function index()
     {
         //
-        $voucherAll = VoucherResource::collection(Voucher::paginate());
-        return $voucherAll;
+        $eventAll = EventResource::collection(Events::paginate());
+        return $eventAll;
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+
     }
 
     /**
@@ -30,32 +39,41 @@ class VoucherController extends Controller
     public function store(Request $request)
     {
         //
-        $voucher = Voucher::create($request->all());
-        return new VoucherResource($voucher);
-
-        // return VoucherResource::collection();
+        $event = Events::create($request->all());
+        return new EventResource($event);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Expertise  $expertise
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Expertise $expertise)
     {
         //
         return VoucherResource::collection(Voucher::where('id', $id)->get());
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Expertise  $expertise
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Expertise $expertise)
+    {
+        //
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Expertise  $expertise
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Expertise $expertise)
     {
         //
         $voucher = Voucher::findOrFail($id);
@@ -67,10 +85,10 @@ class VoucherController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Expertise  $expertise
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Expertise $expertise)
     {
         //
         $event = Voucher::findOrFail($id);

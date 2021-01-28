@@ -3,6 +3,19 @@
 /public/storage
 /storage/*.key
 /vendor
+/Backups
+/CachedData
+/CachedExtensions
+Cookies
+Cookies-journal
+Network Persistent State
+TransportSecurity
+languagepacks.json
+/logs
+/User
+machineid
+rapid_render.json
+ storage.json
 .env
 .env.backup
 .phpunit.result.cache

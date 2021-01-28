@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\VoucherRequest;
-use App\Http\Resources\VoucherResource;
-use App\Models\Voucher;
+use App\Models\Workplace;
 use Illuminate\Http\Request;
 
-class VoucherController extends Controller
+class WorkplaceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,19 @@ class VoucherController extends Controller
     public function index()
     {
         //
-        $voucherAll = VoucherResource::collection(Voucher::paginate());
-        return $voucherAll;
+        $eventAll = EventResource::collection(Events::paginate());
+        return $eventAll;
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+
     }
 
     /**
@@ -30,32 +39,41 @@ class VoucherController extends Controller
     public function store(Request $request)
     {
         //
-        $voucher = Voucher::create($request->all());
-        return new VoucherResource($voucher);
-
-        // return VoucherResource::collection();
+        $event = Events::create($request->all());
+        return new EventResource($event);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Workplace  $workplace
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Workplace $workplace)
     {
         //
         return VoucherResource::collection(Voucher::where('id', $id)->get());
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Workplace  $workplace
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Workplace $workplace)
+    {
+        //
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Workplace  $workplace
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Workplace $workplace)
     {
         //
         $voucher = Voucher::findOrFail($id);
@@ -67,13 +85,13 @@ class VoucherController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Workplace  $workplace
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Workplace $workplace)
     {
         //
-        $event = Voucher::findOrFail($id);
+                $event = Voucher::findOrFail($id);
         $event->delete();
         return response("success");
     }
